@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>所有文章 - ekcool&#39;s blog</title>
+    <link>https://blog.ekcool.com/posts/</link>
+    <description>这是一个纯粹的博客......</description>
+    <generator>Hugo 0.148.2 &amp; FixIt v0.4.0-alpha-20250818030548-c890f613</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Aug 2025 23:48:40 +0800</lastBuildDate>
+    <atom:link href="https://blog.ekcool.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HugoBlog搭建与使用</title>
+      <link>https://blog.ekcool.com/posts/1822896/</link>
+      <pubDate>Mon, 18 Aug 2025 23:48:40 +0800</pubDate>
+      <guid>https://blog.ekcool.com/posts/1822896/</guid>
+      <category domain="https://blog.ekcool.com/categories/hugo/">Hugo</category>
+      <description>HugoBlog搭建与使用</description>
+    </item>
+    <item>
+      <title>Hugo使用Github Action自动部署博客到Github Pages</title>
+      <link>https://blog.ekcool.com/posts/cd51e54/</link>
+      <pubDate>Mon, 18 Aug 2025 16:28:08 +0800</pubDate>
+      <guid>https://blog.ekcool.com/posts/cd51e54/</guid>
+      <category domain="https://blog.ekcool.com/categories/hugo/">Hugo</category>
+      <description>Hugo使用Github Action自动部署博客到Github Pages</description>
+    </item>
+  </channel>
+</rss>

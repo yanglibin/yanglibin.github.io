@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Hugo使用Github Action自动部署博客到Github Pages - ekcool&#39;s blog</title><meta name="author" content="yanglibin">
+<meta name="description" content="这是一个纯粹的博客......"><meta name="keywords" content='hugo'>
+  <meta itemprop="name" content="Hugo使用Github Action自动部署博客到Github Pages">
+  <meta itemprop="description" content="这是一个纯粹的博客......">
+  <meta itemprop="datePublished" content="2025-08-18T16:28:08+08:00">
+  <meta itemprop="dateModified" content="2025-08-18T16:28:08+08:00">
+  <meta itemprop="wordCount" content="468">
+  <meta itemprop="keywords" content="Hugo"><meta property="og:url" content="https://blog.ekcool.com/posts/cd51e54/">
+  <meta property="og:site_name" content="ekcool&#39;s blog">
+  <meta property="og:title" content="Hugo使用Github Action自动部署博客到Github Pages">
+  <meta property="og:description" content="这是一个纯粹的博客......">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-18T16:28:08+08:00">
+    <meta property="article:modified_time" content="2025-08-18T16:28:08+08:00">
+    <meta property="article:tag" content="Hugo">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Hugo使用Github Action自动部署博客到Github Pages">
+  <meta name="twitter:description" content="这是一个纯粹的博客......">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.ekcool.com/posts/cd51e54/" title="Hugo使用Github Action自动部署博客到Github Pages - ekcool&#39;s blog" /><link rel="next" type="text/html" href="https://blog.ekcool.com/about/" title="About" /><link rel="alternate" type="text/markdown" href="https://blog.ekcool.com/posts/cd51e54/index.md" title="Hugo使用Github Action自动部署博客到Github Pages - ekcool's blog"><link rel="stylesheet" href="/css/config.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Hugo使用Github Action自动部署博客到Github Pages",
+    "inLanguage": "en-us",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/blog.ekcool.com\/posts\/cd51e54\/"
+    },"genre": "posts","keywords": "hugo","wordcount":  468 ,
+    "url": "https:\/\/blog.ekcool.com\/posts\/cd51e54\/","datePublished": "2025-08-18T16:28:08+08:00","dateModified": "2025-08-18T16:28:08+08:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "yanglibin"
+      },"description": ""
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="ekcool&#39;s blog"><span class="header-title-text">ekcool&#39;s blog</span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a class="menu-link" href="/posts/">📝文章</a></li><li class="menu-item has-children">
+              <a class="menu-link" href="/categories/">🗂️分类</a><i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/linux">linux</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/categories/mysql">mysql</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/categories/k8s">k8s</a>
+                      </li></ul></li><li class="menu-item">
+              <a class="menu-link" href="/tags/">🏷️标签</a></li><li class="menu-item">
+              <a class="menu-link" href="/search/">🔍search</a></li><li class="menu-item">
+              <a class="menu-link" href="/archives/">归档</a></li><li class="menu-item">
+              <a class="menu-link" href="/friends">🤝友链</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/">🙋关于我</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="ekcool&#39;s blog"><span class="header-title-text">ekcool&#39;s blog</span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li class="menu-item"><a class="menu-link" href="/posts/">📝文章</a></li><li class="menu-item"><span class="nested-item">
+                  <a class="menu-link" href="/categories/">🗂️分类</a>
+                  <i class="dropdown-icon fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </span>
+                <ul class="sub-menu"><li class="menu-item">
+                        <a class="menu-link" href="/categories/linux">linux</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/categories/mysql">mysql</a>
+                      </li><li class="menu-item">
+                        <a class="menu-link" href="/categories/k8s">k8s</a>
+                      </li></ul></li><li class="menu-item"><a class="menu-link" href="/tags/">🏷️标签</a></li><li class="menu-item"><a class="menu-link" href="/search/">🔍search</a></li><li class="menu-item"><a class="menu-link" href="/archives/">归档</a></li><li class="menu-item"><a class="menu-link" href="/friends">🤝友链</a></li><li class="menu-item"><a class="menu-link" href="/about/">🙋关于我</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="fi-container">
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Ukenn2112/UkennWeb@3.0/index/web.js"></script><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Hugo使用Github Action自动部署博客到Github Pages</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><span class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+      yanglibin</span></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/hugo/" class="post-category" title="分类 - Hugo"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Hugo</a></span></div><div class="post-meta-line"><span title="发布于 2025-08-18 16:28:08"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-08-18">2025-08-18</time></span>&nbsp;<span title="468 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 500 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 3 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-准备github仓库">1 准备github仓库</a></li>
+    <li><a href="#2-准备hugo-blog源码">2 准备hugo-blog源码</a></li>
+    <li><a href="#3-将站点部署到-github-page">3 将站点部署到 github page</a>
+      <ul>
+        <li><a href="#31-github-actions-简介">3.1. GitHub Actions 简介</a></li>
+        <li><a href="#32-github-workflow">3.2. github workflow</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-push-到github">4. push 到github</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><p>将hugo blog 使用github action发布到github page 上.</p>
+<h2 class="heading-element" id="1-准备github仓库"><span>1 准备github仓库</span>
+  <a href="#1-%e5%87%86%e5%a4%87github%e4%bb%93%e5%ba%93" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>由于我们要使用<code>github actions</code>自动部署稍，所以这里我们创建两个仓库.</p>
+<ul>
+<li>
+<p><code>yanglibin.github.io</code>   : blog展示仓库（公开）</p>
+<p>这个公开的一定要是 <code>[你的github帐号].github.io</code>，像我的帐号是<code>yanglibin.github.io</code></p>
+</li>
+<li>
+<p><code>ekcool_blog_site</code> :  blog源码存放（私有）</p>
+</li>
+</ul>
+<p>下面来配置ssh 免密:</p>
+<p>在你本地使用<code>ssh-keygen</code> 命令生成密钥对，然后在github仓库中设置全局 ssh 免密:
+<code>setting</code> &ndash;&gt; <code>Access</code> &ndash;&gt; <code>ssh and GPG keys </code>，点击<code>New ssh key</code> ，将公钥添加上去.</p>
+<h2 class="heading-element" id="2-准备hugo-blog源码"><span>2 准备hugo-blog源码</span>
+  <a href="#2-%e5%87%86%e5%a4%87hugo-blog%e6%ba%90%e7%a0%81" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone git@github.com:yanglibin/ekcool_blog_site.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ekcool_blog_site
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将你创建的hugo 站点目录 copy 到 github 仓库目录下</span>
+</span></span><span class="line"><span class="cl">cp -a <span class="o">[</span>your hugo site dir<span class="o">]</span>/*   ./
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加gitignore</span>
+</span></span><span class="line"><span class="cl">cat &gt; ./.gitignore <span class="s">&lt;&lt; EOF
+</span></span></span><span class="line"><span class="cl"><span class="s">.DS_Store
+</span></span></span><span class="line"><span class="cl"><span class="s">Thumbs.db
+</span></span></span><span class="line"><span class="cl"><span class="s">db.json
+</span></span></span><span class="line"><span class="cl"><span class="s">*.log
+</span></span></span><span class="line"><span class="cl"><span class="s">node_modules/
+</span></span></span><span class="line"><span class="cl"><span class="s">themes/
+</span></span></span><span class="line"><span class="cl"><span class="s">public/
+</span></span></span><span class="line"><span class="cl"><span class="s">.deploy*/
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 class="heading-element" id="3-将站点部署到-github-page"><span>3 将站点部署到 github page</span>
+  <a href="#3-%e5%b0%86%e7%ab%99%e7%82%b9%e9%83%a8%e7%bd%b2%e5%88%b0-github-page" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>hugo手动部署到github pages很简单：</p>
+<ol>
+<li>使用<code>hugo server</code>生成静态网页</li>
+<li>将静态网页push到建好的github pages repo master 分支中，即:<code>yanglibin/yanglibin.github.io</code></li>
+</ol>
+<ul>
+<li>
+<p><a href="https://docs.github.com/cn/actions/reference/workflow-syntax-for-github-actions"target="_blank" rel="external nofollow noopener noreferrer">workflows 官方语法学习</a></p>
+</li>
+<li>
+<p><a href="https://github.com/marketplace?type=actions"target="_blank" rel="external nofollow noopener noreferrer">第三方github action 仓库</a></p>
+</li>
+</ul>
+<h3 class="heading-element" id="31-github-actions-简介"><span>3.1. GitHub Actions 简介</span>
+  <a href="#31-github-actions-%e7%ae%80%e4%bb%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。</p>
+<p>很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。</p>
+<p>如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。</p>
+<p>GitHub 做了一个<a href="https://github.com/marketplace?type=actions"target="_blank" rel="external nofollow noopener noreferrer">官方市场</a>，可以搜索到他人提交的 actions。另外，还有一个 <a href="https://github.com/sdras/awesome-actions"target="_blank" rel="external nofollow noopener noreferrer">awesome actions</a> 的仓库，也可以找到不少 action。</p>
+<p>上面说了，每个 action 就是一个独立脚本，因此可以做成代码仓库，使用<code>userName/repoName</code>的语法引用 action。比如，<code>actions/setup-node</code>就表示<code>github.com/actions/setup-node</code>这个<a href="https://github.com/actions/setup-node"target="_blank" rel="external nofollow noopener noreferrer">仓库</a>，它代表一个 action，作用是安装 Node.js。事实上，GitHub 官方的 actions 都放在 <a href="https://github.com/actions"target="_blank" rel="external nofollow noopener noreferrer">github.com/actions</a> 里面。</p>
+<p>既然 actions 是代码仓库，当然就有版本的概念，用户可以引用某个具体版本的 action。下面都是合法的 action 引用，用的就是 Git 的指针概念，详见<a href="https://help.github.com/en/articles/about-actions#versioning-your-action"target="_blank" rel="external nofollow noopener noreferrer">官方文档</a>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">actions/setup-node@74bc508 <span class="c1"># 指向一个 commit</span>
+</span></span><span class="line"><span class="cl">actions/setup-node@v1.0    <span class="c1"># 指向一个标签</span>
+</span></span><span class="line"><span class="cl">actions/setup-node@master  <span class="c1"># 指向一个分支</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="32-github-workflow"><span>3.2. github workflow</span>
+  <a href="#32-github-workflow" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>首先，需要获取token</p>
+<ol>
+<li>
+<p>点击右上角GitHub头像 -&gt; 设置 -&gt; 开发者设置 -&gt; Personal access tokens -&gt; Generate new token</p>
+<p>或直接访问<code>https://github.com/settings/apps</code></p>
+</li>
+<li>
+<p>生成 <code>Generate new token (classic)</code>（生成后只显示一次，请复制保存）</p>
+<p>勾选repo里的所有选项， <em>workflow</em> 里所有的选项</p>
+<p>还有<code>admin:repo_hook</code></p>
+</li>
+<li>
+<p>在你的站点仓库:<code>ekcool_blog_site</code>: <code>setting</code> 中配置变量:</p>
+</li>
+</ol>
+<ul>
+<li><code>PERSONAL_TOKEN</code>   : 上面创建的Token</li>
+<li><code>ACTION_DEPLOY_KEY</code>: ssh 的私钥，用于在流水线中连接发布仓库</li>
+</ul>
+<p><code>setting</code> &ndash;&gt; <code>Secrets and veriables</code> &ndash;&gt; <code>Actions secrets and variables</code>，选择<code>secrets</code> 标签页，选择<code>Repository secrets</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># action workflows</span>
+</span></span><span class="line"><span class="cl">mkdir -p .github/workflows
+</span></span><span class="line"><span class="cl">touch .github/workflows/deploy.yml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># hugo 中引用 文件。 编写 deploy.yml</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># action name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hugo Blog Deploy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># 触发action分支</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#  workflow_dispatch:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#  schedule:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#    # Runs everyday at 8:00 AM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#    - cron: &#34;0 0 * * *&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 定义变量</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">GIT_USER</span><span class="p">:</span><span class="w"> </span><span class="l">yanglibin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">GIT_EMAIL</span><span class="p">:</span><span class="w"> </span><span class="l">fengyuanyang000@qq.com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">THEME</span><span class="p">:</span><span class="w"> </span><span class="l">FixIt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># https://github.com/hugo-fixit/FixIt.git</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">THEME_REPO</span><span class="p">:</span><span class="w"> </span><span class="l">hugo-fixit/FixIt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">THEME_BRANCH</span><span class="p">:</span><span class="w"> </span><span class="l">main</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">THEME_PATH</span><span class="p">:</span><span class="w"> </span><span class="l">themes/FixIt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># 使用 第三方 Actions  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># Checkout 当前仓库到本地</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Checkout</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">           </span><span class="nt">ref</span><span class="p">:</span><span class="w"> </span><span class="l">source</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># Checkout 主题</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Checkout theme repo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l">${{ env.THEME_REPO }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ref</span><span class="p">:</span><span class="w"> </span><span class="l">${{ env.THEME_BRANCH }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">${{ env.THEME_PATH }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># hugo 环境准备</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Setup Hugo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-hugo@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">hugo-version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;latest&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">extended</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># hugo build 生成 web页面</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build Web</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hugo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Deploy Web</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-gh-pages@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c">#PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">DEPLOY_KEY</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.ACTION_DEPLOY_KEY }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">EXTERNAL_REPOSITORY</span><span class="p">:</span><span class="w"> </span><span class="l">yanglibin/yanglibin.github.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">PUBLISH_BRANCH</span><span class="p">:</span><span class="w"> </span><span class="l">master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">PUBLISH_DIR</span><span class="p">:</span><span class="w"> </span><span class="l">./public </span><span class="w"> </span><span class="c"># 注意这里指的是要发布哪个文件夹的内容，而不是指发布到目的仓库的什么位置，因为hugo默认生成静态网页到public文件夹，所以这里发布public文件夹里的内容</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">commit_message</span><span class="p">:</span><span class="w"> </span><span class="l">${{ github.event.head_commit.message }}</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 class="heading-element" id="4-push-到github"><span>4. push 到github</span>
+  <a href="#4-push-%e5%88%b0github" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git add .
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;my hugo blog first commit&#34;</span>
+</span></span><span class="line"><span class="cl">git push --set-upstream origin source</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 class="heading-element" id="参考"><span>参考:</span>
+  <a href="#%e5%8f%82%e8%80%83" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h1><ul>
+<li>
+<p><a href="https://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html"target="_blank" rel="external nofollow noopener noreferrer">阮一峰-GitHub Actions 入门教程</a></p>
+</li>
+<li>
+<p><a href="https://tomial.github.io/posts/hugo%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0github-pages/"target="_blank" rel="external nofollow noopener noreferrer">Hugo使用Github Action自动部署博客到Github Pages</a></p>
+</li>
+</ul></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod"><span title="更新于 2025-08-18 16:28:08">更新于 2025-08-18&nbsp;</span>
+      </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/cd51e54/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+        <div class="post-info-share">
+          <span><a href="javascript:void(0);" title="分享到 X" data-sharer="twitter" data-url="https://blog.ekcool.com/posts/cd51e54/" data-title="Hugo使用Github Action自动部署博客到Github Pages" data-hashtags="hugo"><i class="fa-brands fa-x-twitter fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://blog.ekcool.com/posts/cd51e54/" data-hashtag="hugo"><i class="fa-brands fa-facebook-square fa-fw" aria-hidden="true"></i></a>
+  <a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://blog.ekcool.com/posts/cd51e54/" data-title="Hugo使用Github Action自动部署博客到Github Pages"><i class="fa-brands fa-weibo fa-fw" aria-hidden="true"></i></a>
+  </span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/hugo/" class="post-tag" title="标签 - Hugo">Hugo</a></section>
+    <section><span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/posts/1822896/" class="post-nav-item" rel="next" title="HugoBlog搭建与使用">HugoBlog搭建与使用<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.148.2"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.4.0-alpha-20250818030548-c890f613"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="/">yanglibin</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric d-none">0%</span>
+        </div></div><div id="mask"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/sharer/sharer.min.js" async defer></script><script src="/lib/cookieconsent/cookieconsent.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":false},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验。"},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"cse":{"cx":"93fb852f486a840d3","engine":"google","gotoResultsPage":"前往搜索结果页面……","resultsPage":"/search/","searchIn":"在 Google 中搜索"},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":30,"type":"cse"},"version":"v0.4.0-alpha-20250818030548-c890f613"};</script><script src="/js/theme.min.js" defer></script></body>
+</html>
